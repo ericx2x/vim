@@ -16,7 +16,6 @@ set nocompatible               " be iMproved
 
       " vim script plugins
         Plugin 'FuzzyFinder'
-        Plugin 'easymotion/vim-easymotion'
         Plugin 'Indent-Guides'
         Plugin 'L9'
         Plugin 'The-NERD-tree'
@@ -32,6 +31,7 @@ set nocompatible               " be iMproved
         "Plugin 'Shougo/neosnippet'
         "Plugin 'vim-scripts/JavaScript-Indent'
         "Plugin 'Valloric/YouCompleteMe'
+        Plugin 'joequery/Stupid-EasyMotion'
         Plugin 'airblade/vim-gitgutter'
         Plugin 'bling/vim-airline'
         Plugin 'corntrace/bufexplorer'
@@ -147,8 +147,7 @@ set nocompatible               " be iMproved
     set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 
 " }
-"
-" Uses system clipboard
+" Use '' to copy to clipboard much more reliably than "+y
 vmap '' :w !pbcopy<CR><CR>
 
 " Formatting {
@@ -170,7 +169,6 @@ vmap '' :w !pbcopy<CR><CR>
 
     "set lines?
     "set columns?
-    set nospell
     "turn off the bell
     set noeb vb t_vb=
 
@@ -179,7 +177,7 @@ vmap '' :w !pbcopy<CR><CR>
     set pastetoggle=<F2>
     set showmode
     " copy a highlighted portion to eh paste buffer
-    command -range Copy silent '<,'>w ! pbcopy
+    "command -range Copy silent '<,'>w ! pbcopy
 " }
 
 
@@ -187,7 +185,8 @@ vmap '' :w !pbcopy<CR><CR>
 
     "The default leader is '\', but many people prefer ',' as it's in a standard
     "location
-    "let mapleader = '.'
+    let mapleader = ','
+    "noremap <leader> w :w <cr>
 
     " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
     nnoremap ; :
@@ -306,17 +305,17 @@ vmap '' :w !pbcopy<CR><CR>
 
   " syntastic settings {
   "
-  let g:syntastic_check_on_open=1
-  let js_syn_checkers = []
-  if (findfile('.eslintrc', '.;') != '')
-      call add(js_syn_checkers, 'eslint')
-  endif
-  if (findfile('.jscsrc', '.;') != '')
-      call add(js_syn_checkers, 'jscs')
-  endif
+  "let g:syntastic_check_on_open=1
+  "let js_syn_checkers = []
+  "if (findfile('.eslintrc', '.;') != '')
+  "    call add(js_syn_checkers, 'eslint')
+  "endif
+  "if (findfile('.jscsrc', '.;') != '')
+  "    call add(js_syn_checkers, 'jscs')
+  "endif
 
-  let g:syntastic_javascript_checkers = js_syn_checkers
-  let g:syntastic_javascript_checkers = ['eslint', 'jscs']
+  "let g:syntastic_javascript_checkers = js_syn_checkers
+  "let g:syntastic_javascript_checkers = ['eslint', 'jscs']
   "let g:syntastic_auto_loc_list=1
   " }
 
@@ -478,4 +477,13 @@ call InitializeDirectories()
     set wrapmargin=0
     set wrap
     "echo "word wrapping is turned off."
+" Word wrapping {
 " }
+"autocmd VimEnter * set path+=**
+"autocmd VimEnter * set wildignore+=**/node_modules/**
+
+" Wildmenu
+set wildmenu
+set wildmode=list:longest,full
+set wildignore+=**/vendor/**
+set wildignore+=**/node_modules/**
