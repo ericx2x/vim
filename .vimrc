@@ -16,6 +16,7 @@ set nocompatible               " be iMproved
 
       " vim script plugins
         Plugin 'FuzzyFinder'
+        Plugin 'easymotion/vim-easymotion'
         Plugin 'Indent-Guides'
         Plugin 'L9'
         Plugin 'The-NERD-tree'
@@ -31,7 +32,6 @@ set nocompatible               " be iMproved
         "Plugin 'Shougo/neosnippet'
         "Plugin 'vim-scripts/JavaScript-Indent'
         "Plugin 'Valloric/YouCompleteMe'
-        Plugin 'joequery/Stupid-EasyMotion'
         Plugin 'airblade/vim-gitgutter'
         Plugin 'bling/vim-airline'
         Plugin 'corntrace/bufexplorer'
