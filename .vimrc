@@ -1,4 +1,3 @@
-"Don't forget to run :PluginInstall
 set nocompatible               " be iMproved
 
 " Vundle {
@@ -38,6 +37,8 @@ set nocompatible               " be iMproved
         Plugin 'corntrace/bufexplorer'
         Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
         Plugin 'kien/ctrlp.vim'
+        Plugin 'junegunn/fzf.vim'
+        Plugin 'ggreer/the_silver_searcher'
         Plugin 'lambdalisue/nodeunit.vim.git'
         Plugin 'marijnh/tern_for_vim'
         Plugin 'matchit.zip'
@@ -484,7 +485,9 @@ call InitializeDirectories()
 "autocmd VimEnter * set wildignore+=**/node_modules/**
 
 " Wildmenu
+set path+=**
 set wildmenu
 set wildmode=list:longest,full
 set wildignore+=**/vendor/**
 set wildignore+=**/node_modules/**
+ 
