@@ -32,6 +32,7 @@ set nocompatible               " be iMproved
         "Plugin 'Shougo/neosnippet'
         "Plugin 'vim-scripts/JavaScript-Indent'
         "Plugin 'Valloric/YouCompleteMe'
+        Plugin 'sjl/badwolf'
         Plugin 'airblade/vim-gitgutter'
         Plugin 'bling/vim-airline'
         Plugin 'corntrace/bufexplorer'
@@ -105,8 +106,8 @@ set nocompatible               " be iMproved
 " }
 
 " Vim UI {
-    set background=light         " Assume a dark background
-    color Tesla " load a colorscheme
+    "set background=light         " Assume a dark background
+    color badwolf " load a colorscheme
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
