@@ -154,7 +154,7 @@ vmap '' :w !pbcopy<CR><CR>
 
 " Formatting {
     set wrap
-    set colorcolumn=80              " show margin at 80
+    "set colorcolumn=80              " show margin at 80
     set shiftwidth=4                " use indents of 4 spaces
     set tabstop=8                   " an indentation every 4 columns
     set softtabstop=4               " let backspace delete indent
