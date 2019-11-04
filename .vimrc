@@ -1,3 +1,4 @@
+"Don't forget to run :PluginInstall
 set nocompatible               " be iMproved
 
 " Vundle {
