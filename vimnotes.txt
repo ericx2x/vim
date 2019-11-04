@@ -11,6 +11,11 @@ $ - move cursor to end of current line
 ` - take to next occurence of word you&#39;re currently on
 % - jump to beginning or end of brackets { } (it toggles)
 "+y - copy to system clipboard
+<leader>cc - comment out code but must be used with nerdcommenter plugin
+
+v - enter visual mode at cursor
+V - enter visual mode on whole line
+<< - tab indent lines from visual mode after selecting lines
 
 :20vs . - visual split on current working directory (dont forget period)
 Ctrl-W - switch between windows
@@ -69,6 +74,9 @@ vscode - install vim extension - enable easymotion - type \\w or \\b
 :cw - shorthand for above
 :cnext  - next for above
 :cprev - previous for above
+:bufdo vimgrepadd yourstringhere % | copen   - find string in open buffers
+:Ag yourstringhere - make sure to install silver_searcher and FZF
+https://stackoverflow.com/questions/38398787/how-do-i-search-in-all-files-of-my-project-using-vim
 
 what&#39;s possible in vim:
 https://www.youtube.com/watch?v=E-ZbrtoSuzw
@@ -85,4 +93,4 @@ plugins:
 https://gist.githubusercontent.com/simonista/8703722/raw/d08f2b4dc10452b97d3ca15386e9eed457a53c61/.vimrc
 https://github.com/ThePrimeagen/dotvim
 
-https://www.reddit.com/r/vim/comments/dp0kpd/what_vim_plugins_is_he_using_here/
+https://www.reddit.com/r/vim/comments/dp0kpd/what_vim_plugins_is_he_using_here/ 
