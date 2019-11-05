@@ -32,7 +32,6 @@ set nocompatible               " be iMproved
         "Plugin 'Shougo/neosnippet'
         "Plugin 'vim-scripts/JavaScript-Indent'
         "Plugin 'Valloric/YouCompleteMe'
-        Plugin 'sjl/badwolf'
         Plugin 'airblade/vim-gitgutter'
         Plugin 'bling/vim-airline'
         Plugin 'corntrace/bufexplorer'
@@ -58,6 +57,7 @@ set nocompatible               " be iMproved
         Plugin 'plasticboy/vim-markdown'
         Plugin 'tpope/vim-surround'
         Plugin 'vim-scripts/Colour-Sampler-Pack'
+        Plugin 'sjl/badwolf'
         Plugin 'vim-scripts/Liquid-Carbon.git'
         Plugin 'wincent/Command-T'
         Plugin 'yaroot/vissort'
@@ -106,7 +106,7 @@ set nocompatible               " be iMproved
 " }
 
 " Vim UI {
-    "set background=light         " Assume a dark background
+    set background=light         " Assume a dark background
     color badwolf " load a colorscheme
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
@@ -221,6 +221,9 @@ vmap '' :w !pbcopy<CR><CR>
     "clearing highlighted search
     nmap <silent> <leader>/ :nohlsearch<CR>
 
+    "ented to make newlines from normal mode
+    nmap <S-Enter> O<Esc>
+    nmap <CR> o<Esc>
     " Shortcuts
     " Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
@@ -498,4 +501,12 @@ set wildignore+=**/vendor/**
 set wildignore+=**/node_modules/**
 set conceallevel=0
 
- 
+"Hotkey to toggle scroll cursor center on/off
+:nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+
+"Always keeo cursor center screen.
+augroup VCenterCursor
+  au!
+  au BufEnter,WinEnter,WinNew,VimResized *,*.*
+        \ let &scrolloff=winheight(win_getid())/2
+augroup END
