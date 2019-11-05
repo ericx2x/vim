@@ -210,8 +210,10 @@ vmap '' :w !pbcopy<CR><CR>
     " Switch between buffers faster
     "nnoremap <silent> [ :bp<CR>
     "nnoremap <silent> ]] :bn<CR>
-    map <C-K> :bnext<CR>
-    map <C-J> :bprev<CR>
+    "map <C-K> :bnext<CR>
+    "map <C-J> :bprev<CR>
+    nnoremap <C-k> <C-u>
+    nnoremap <C-j> <C-d>
     nnoremap <Tab> :bnext<CR>
     nnoremap <S-Tab> :bprevious<CR>
 
