@@ -41,7 +41,7 @@ set nocompatible               " be iMproved
         Plugin 'junegunn/fzf.vim'
         Plugin 'ggreer/the_silver_searcher'
         Plugin 'lambdalisue/nodeunit.vim.git'
-        Plugin 'marijnh/tern_for_vim'
+        "Plugin 'marijnh/tern_for_vim'
         Plugin 'matchit.zip'
         Plugin 'mattn/gist-vim'
         Plugin 'mattn/webapi-vim'
@@ -111,6 +111,9 @@ set nocompatible               " be iMproved
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
+    let g:indentLine_setConceal = 0
+
+
 
     if has('cmdline_info')
         set ruler                   " show the ruler
@@ -207,8 +210,10 @@ vmap '' :w !pbcopy<CR><CR>
     " Switch between buffers faster
     "nnoremap <silent> [ :bp<CR>
     "nnoremap <silent> ]] :bn<CR>
-    map <C-J> :bnext<CR>
-    map <C-K> :bprev<CR>
+    map <C-K> :bnext<CR>
+    map <C-J> :bprev<CR>
+    nnoremap <Tab> :bnext<CR>
+    nnoremap <S-Tab> :bprevious<CR>
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
@@ -491,4 +496,6 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore+=**/vendor/**
 set wildignore+=**/node_modules/**
+set conceallevel=0
+
  
