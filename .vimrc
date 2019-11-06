@@ -1,3 +1,5 @@
+"to get these codes without restarting this file
+":so %
 set nocompatible               " be iMproved
 
 " Vundle {
@@ -40,14 +42,18 @@ set nocompatible               " be iMproved
         Plugin 'junegunn/fzf.vim'
         Plugin 'ggreer/the_silver_searcher'
         Plugin 'lambdalisue/nodeunit.vim.git'
-        "Plugin 'marijnh/tern_for_vim'
+        Plugin 'marijnh/tern_for_vim'
         Plugin 'matchit.zip'
         Plugin 'mattn/gist-vim'
         Plugin 'mattn/webapi-vim'
         Plugin 'mileszs/ack.vim'
         Plugin 'mustache/vim-mustache-handlebars'
         Plugin 'ntpeters/vim-better-whitespace'
+        "Plugin 'maxmellon/vim-jsx-pretty'
+        "Plugin 'chemzqm/vim-jsx-improve'
         Plugin 'pangloss/vim-javascript'
+        "Plugin 'Emigre/vim-javascript'
+        "Plugin 'Emigre/vim-jsx'
         Plugin 'reinh/vim-makegreen'
         Plugin 'rizzatti/dash.vim'
         Plugin 'rizzatti/funcoo.vim'
@@ -61,7 +67,6 @@ set nocompatible               " be iMproved
         Plugin 'vim-scripts/Liquid-Carbon.git'
         Plugin 'wincent/Command-T'
         Plugin 'yaroot/vissort'
-        Plugin 'mxw/vim-jsx'
         Plugin 'tfnico/vim-gradle'
         Plugin 'shime/vim-livedown'
         Plugin 'heavenshell/vim-jsdoc'
@@ -87,18 +92,18 @@ set nocompatible               " be iMproved
     "set autowrite                  " automatically write a file when leaving a modified buffer
     "set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
     "set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
-    set virtualedit=onemore         " allow for cursor beyond last character
+    "set virtualedit=onemore         " allow for cursor beyond last character
     set history=5000                " Store a ton of history (default is 20)
     set nospell                       " spell checking off
     set hidden                      " allow buffer switching without saving
 
     " Setting up the directories {
-        set backup                      " backups are nice ...
-        if has('persistent_undo')
-            set undofile                "so is persistent undo ...
-            set undolevels=1000         "maximum number of changes that can be undone
-            set undoreload=10000        "maximum number lines to save for undo on a buffer reload
-        endif
+        "set backup                      " backups are nice ...
+        "if has('persistent_undo')
+            "set undofile                "so is persistent undo ...
+            "set undolevels=1000         "maximum number of changes that can be undone
+            "set undoreload=10000        "maximum number lines to save for undo on a buffer reload
+        "endif
         " Could use * rather than *.*, but I prefer to leave .files unsaved
 "        au BufWinLeave *.* silent! mkview  "make vim save view (state) (folds, cursor, etc)
 "        au BufWinEnter *.* silent! loadview "make vim load view (state) (folds, cursor, etc)
@@ -113,6 +118,9 @@ set nocompatible               " be iMproved
     set cursorline                  " highlight current line
     let g:indentLine_setConceal = 0
 
+
+    "cursor crosshairs
+    :set cursorcolumn
 
 
     if has('cmdline_info')
@@ -316,6 +324,14 @@ vmap '' :w !pbcopy<CR><CR>
       command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
       nnoremap \ :Ag<SPACE>
   endif
+
+    "function! Ag(args) abort
+      "execute "silent! grep!" shellescape(a:args)
+      "cwindow
+      "redraw!
+    "endfunction
+
+"command -nargs=+ -complete=file Ag call Ag(<q-args>)
   " }
 
   " syntastic settings {
@@ -504,11 +520,13 @@ set wildmode=list:longest,full
 set wildignore+=**/vendor/**
 set wildignore+=**/node_modules/**
 set conceallevel=0
+set ma
+
 
 "Hotkey to toggle scroll cursor center on/off
 :nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
-"Always keeo cursor center screen.
+"Always keep cursor center screen.
 augroup VCenterCursor
   au!
   au BufEnter,WinEnter,WinNew,VimResized *,*.*
