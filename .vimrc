@@ -312,6 +312,8 @@ vmap '' :w !pbcopy<CR><CR>
       let NERDTreeShowHidden=1
       let NERDTreeKeepTreeInNewTab=1
   " }
+  "nerdtree open file from current direcotyr
+  autocmd BufEnter * lcd %:p:h
   " Ack (The Silver Searcher) {
   if executable('ag')
       " Use ag over grep
