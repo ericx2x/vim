@@ -42,7 +42,7 @@ set nocompatible               " be iMproved
         Plugin 'junegunn/fzf.vim'
         Plugin 'ggreer/the_silver_searcher'
         Plugin 'lambdalisue/nodeunit.vim.git'
-        Plugin 'marijnh/tern_for_vim'
+        "Plugin 'marijnh/tern_for_vim'
         Plugin 'matchit.zip'
         Plugin 'mattn/gist-vim'
         Plugin 'mattn/webapi-vim'
@@ -232,6 +232,9 @@ vmap '' :w !pbcopy<CR><CR>
 
     "clearing highlighted search
     nmap <silent> <leader>/ :nohlsearch<CR>
+
+    "delete without copying to vim clipboard
+    nmap x "_d
 
     "ented to make newlines from normal mode
     nmap <S-Enter> O<Esc>
