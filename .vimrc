@@ -214,8 +214,8 @@ vmap '' :w !pbcopy<CR><CR>
     "map <C-J> :bprev<CR>
     nnoremap <C-k> <C-u>
     nnoremap <C-j> <C-d>
-    nnoremap 8 <C-u>
-    nnoremap 7 <C-d>
+    nnoremap 9 <C-u>
+    nnoremap 8 <C-d>
     nnoremap <Tab> :bnext<CR>
     nnoremap <S-Tab> :bprevious<CR>
 
