@@ -537,3 +537,14 @@ augroup VCenterCursor
   au BufEnter,WinEnter,WinNew,VimResized *,*.*
         \ let &scrolloff=winheight(win_getid())/2
 augroup END
+
+
+" insert blank lines with <enter> (seems to solve :Ag and it's not modifiable error after doing enter)   
+function! NewlineWithEnter()
+    if !&modifiable
+        execute "normal! \<CR>"
+    else
+        execute "normal! O\<esc>"
+    endif
+endfunction
+nnoremap <CR> :call NewlineWithEnter()<CR>
