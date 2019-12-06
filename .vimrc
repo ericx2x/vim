@@ -548,3 +548,8 @@ function! NewlineWithEnter()
     endif
 endfunction
 nnoremap <CR> :call NewlineWithEnter()<CR>
+
+
+
+"Ag searches from project directory root and not current open directory/file.
+let g:ag_working_path_mode="r"
