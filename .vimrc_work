@@ -233,10 +233,10 @@ vmap '' :w !pbcopy<CR><CR>
     "nnoremap <silent> ]] :bn<CR>
     "map <C-K> :bnext<CR>
     "map <C-J> :bprev<CR>
-    nnoremap <C-k> <C-u>
-    nnoremap <C-j> <C-d>
-    nnoremap 9 <C-u>
-    nnoremap 8 <C-d>
+    nnoremap <C-k> 3<C-y>
+    nnoremap <C-j> 3<C-e>
+    nnoremap 9 3<C-y>
+    nnoremap 8 3<C-e>
     nnoremap <Tab> :bnext<CR>
     nnoremap <S-Tab> :bprevious<CR>
 
