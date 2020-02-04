@@ -60,11 +60,11 @@ set nocompatible               " be iMproved
         Plugin 'mileszs/ack.vim'
         Plugin 'mustache/vim-mustache-handlebars'
         "Plugin 'ntpeters/vim-better-whitespace'
-        "Plugin 'maxmellon/vim-jsx-pretty'
+        Plugin 'maxmellon/vim-jsx-pretty'
         "Plugin 'chemzqm/vim-jsx-improve'
         "Plugin 'pangloss/vim-javascript'
-        Plugin 'Emigre/vim-javascript'
-        Plugin 'Emigre/vim-jsx'
+        "Plugin 'Emigre/vim-javascript'
+        "Plugin 'Emigre/vim-jsx'
         Plugin 'reinh/vim-makegreen'
         Plugin 'rizzatti/dash.vim'
         Plugin 'rizzatti/funcoo.vim'
@@ -83,6 +83,7 @@ set nocompatible               " be iMproved
         Plugin 'heavenshell/vim-jsdoc'
         Plugin 'Yggdroot/indentLine'
         "Plugin 'myusuf3/numbers.vim'
+        Plugin 'bfrg/vim-cpp-modern'
         if executable('ctags')
             Plugin 'majutsushi/tagbar'
         endif
@@ -180,9 +181,9 @@ vmap '' :w !pbcopy<CR><CR>
 " Formatting {
     set wrap
     "set colorcolumn=80              " show margin at 80
-    set shiftwidth=4                " use indents of 4 spaces
     set tabstop=8                   " an indentation every 4 columns
-    set softtabstop=4               " let backspace delete indent
+    set softtabstop=2               " let backspace delete indent
+    set shiftwidth=2                " use indents of 4 spaces
     set expandtab                   " spaces and not tabs
 
     " Remove trailing whitespaces and ^M chars
@@ -235,8 +236,8 @@ vmap '' :w !pbcopy<CR><CR>
     "map <C-J> :bprev<CR>
     nnoremap <C-k> 3<C-u>
     nnoremap <C-j> 3<C-d>
-    nnoremap 9 9<C-u>
-    nnoremap 8 9<C-d>
+    nnoremap 9 3<C-u>
+    nnoremap 8 3<C-d>
     nnoremap <C-u> 9<C-u>
     nnoremap <C-d> 9<C-d>
     nnoremap <Tab> :bnext<CR>
@@ -565,3 +566,5 @@ augroup END
 
 "Ag searches from project directory root and not current open directory/file.
 let g:ag_working_path_mode="r"
+
+  
