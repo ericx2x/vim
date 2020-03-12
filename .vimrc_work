@@ -567,5 +567,12 @@ augroup END
 "Ag searches from project directory root and not current open directory/file.
 let g:ag_working_path_mode="r"
 
-  
+
+"Paste faster
 set noswapfile
+
+"remap d and c to not cut highlighted text
+nnoremap d "_d
+vnoremap d "_d
+nnoremap c "_c
+vnoremap c "_c
