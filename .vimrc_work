@@ -245,6 +245,10 @@ vmap '' :w !pbcopy<CR><CR>
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
+    
+	  "paste without yanking
+    vnoremap p "_dP
+
 
     "clearing highlighted search
     nmap <silent> <leader>/ :nohlsearch<CR>
