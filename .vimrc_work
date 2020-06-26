@@ -213,7 +213,7 @@ vmap '' :w !pbcopy<CR><CR>
 
     "The default leader is '\', but many people prefer ',' as it's in a standard
     "location
-    let mapleader = ','
+    let mapleader = ' '
     "noremap <leader> w :w <cr>
 
     " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
