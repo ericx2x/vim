@@ -580,3 +580,6 @@ nnoremap d "_d
 vnoremap d "_d
 nnoremap c "_c
 vnoremap c "_c
+
+"No read only mode opening
+:set noro
