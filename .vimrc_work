@@ -583,3 +583,7 @@ vnoremap c "_c
 
 "No read only mode opening
 :set noro
+
+"solution to issue with vim bg not being transparent
+hi Normal guibg=NONE ctermbg=NONE
+	
