@@ -587,3 +587,6 @@ vnoremap c "_c
 "solution to issue with vim bg not being transparent
 hi Normal guibg=NONE ctermbg=NONE
 	
+
+" remap command v to quick paste
+nmap <leader>p "+p
