@@ -590,3 +590,6 @@ hi Normal guibg=NONE ctermbg=NONE
 
 " remap command v to quick paste
 nmap <leader>p "+p
+
+"Use system wide clipboard
+set clipboard^=unnamed,unnamedplus " Use same clipboard as macOS/Linux
