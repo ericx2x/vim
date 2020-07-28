@@ -74,9 +74,9 @@ set nocompatible               " be iMproved
         Plugin 'plasticboy/vim-markdown'
         Plugin 'tpope/vim-surround'
         Plugin 'vim-scripts/Colour-Sampler-Pack'
-        Plugin 'sjl/badwolf'
+        "Plugin 'sjl/badwolf'
         Plugin 'vim-scripts/Liquid-Carbon.git'
-        Plugin 'wincent/Command-T'
+        "Plugin 'wincent/Command-T'
         Plugin 'yaroot/vissort'
         Plugin 'tfnico/vim-gradle'
         Plugin 'shime/vim-livedown'
@@ -124,7 +124,7 @@ set nocompatible               " be iMproved
 
 " Vim UI {
     set background=light         " Assume a dark background
-    color badwolf " load a colorscheme
+    color LiquidCarbon " load a colorscheme
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
@@ -212,9 +212,10 @@ vmap '' :w !pbcopy<CR><CR>
 " Key (re)Mappings {
 
     "The default leader is '\', but many people prefer ',' as it's in a standard
-    "location
-    let mapleader = ' '
-    "noremap <leader> w :w <cr>
+    "location. I presonally prefer spacebar
+    "nnoremap <SPACE> <Nop>
+    let mapleader = "\<Space>"
+    noremap <leader>s :w<cr>
 
     " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
     nnoremap ; :
@@ -246,9 +247,12 @@ vmap '' :w !pbcopy<CR><CR>
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
     
-	  "paste without yanking
-    vnoremap p "_dP
+	  "paste without yanking (no longer needed because fast pasting?)
+    "vnoremap p "_dP
+    vnoremap p "+p
 
+    " paste fast leader key remap
+    nmap <leader>p "+p
 
     "clearing highlighted search
     nmap <silent> <leader>/ :nohlsearch<CR>
@@ -273,10 +277,10 @@ vmap '' :w !pbcopy<CR><CR>
     " Some helpers to edit mode
     " http://vimcasts.org/e/14
     cnoremap %% <C-R>=expand('%:h').'/'<cr>
-    map <leader>ew :e %%
-    map <leader>es :sp %%
-    map <leader>ev :vsp %%
-    map <leader>et :tabe %%
+    map <leader>;w :e %%
+    map <leader>;s :sp %%
+    map <leader>;v :vsp %%
+    "map <leader>;t :tabe %%" don't seem to need these typeof tabs because tab key remaps to move buffers and tab shows at top plugin takes over
 
     " Adjust viewports to the same size
     map <Leader>= <C-w>=
@@ -284,7 +288,7 @@ vmap '' :w !pbcopy<CR><CR>
 
 " Plugins {
   " Buffer explorer {
-    nmap <leader>b :BufExplorer<CR>
+    nmap <leader><Tab> :BufExplorer<CR>
   " }
 
   " airline {
@@ -571,8 +575,7 @@ augroup END
 "Ag searches from project directory root and not current open directory/file.
 let g:ag_working_path_mode="r"
 
-
-"Paste faster
+"Paste faster doesn't seem to work though
 set noswapfile
 
 "remap d and c to not cut highlighted text
@@ -581,15 +584,40 @@ vnoremap d "_d
 nnoremap c "_c
 vnoremap c "_c
 
-"No read only mode opening
-:set noro
-
 "solution to issue with vim bg not being transparent
 hi Normal guibg=NONE ctermbg=NONE
-	
 
-" remap command v to quick paste
-nmap <leader>p "+p
 
 "Use system wide clipboard
 set clipboard^=unnamed,unnamedplus " Use same clipboard as macOS/Linux
+
+
+"Easy Motion Setup Overwin Addons
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" F{char}{char} to move to {char}{char}
+nmap F <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>j <Plug>(easymotion-bd-w)
+nmap <Leader>j <Plug>(easymotion-overwin-w)
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+map  <nowait> <Leader><Leader>b <Plug>(easymotion-bd-w)
+nmap <nowait> <Leader><Leader>b <Plug>(easymotion-overwin-w)
+map  <nowait> <Leader>b <Plug>(easymotion-bd-w)
+nmap <nowait> <Leader>b <Plug>(easymotion-overwin-w)
+map  <nowait> <Leader>n <Plug>(easymotion-bd-w)
+nmap <nowait> <Leader>n <Plug>(easymotion-overwin-w)
+
+map <Leader> <Plug>(easymotion-prefix)
+
+"find and replace shortcut
+map <nowait> <leader>r :%s/
+
