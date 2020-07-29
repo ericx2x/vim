@@ -73,9 +73,16 @@ set nocompatible               " be iMproved
         "Plugin 'tpope/vim-fugitive'
         Plugin 'plasticboy/vim-markdown'
         Plugin 'tpope/vim-surround'
+        "Themes
         Plugin 'vim-scripts/Colour-Sampler-Pack'
         "Plugin 'sjl/badwolf'
+        Plugin 'dracula/vim',{ 'name': 'dracula' }
+        Plugin 'chriskempson/base16-vim'
+        "base16-default-dark
         Plugin 'vim-scripts/Liquid-Carbon.git'
+        Plugin 'altercation/vim-colors-solarized'
+        Plugin 'NLKNguyen/papercolor-theme'
+        "end themes
         "Plugin 'wincent/Command-T'
         Plugin 'yaroot/vissort'
         Plugin 'tfnico/vim-gradle'
@@ -123,8 +130,9 @@ set nocompatible               " be iMproved
 " }
 
 " Vim UI {
+    "set t_Co-256 "this may or maynot be needed for certain color sschemes.
     set background=light         " Assume a dark background
-    color LiquidCarbon " load a colorscheme
+    color LiquidCarbon       " load a colorscheme
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
     set cursorline                  " highlight current line
@@ -171,7 +179,7 @@ set nocompatible               " be iMproved
     set scrolljump=5                " lines to scroll when cursor leaves screen
     set scrolloff=3                 " minimum lines to keep above and below cursor
     set foldenable                  " auto fold code
-    set list
+    set nolist
     "set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace   
 
 " }
@@ -620,4 +628,8 @@ map <Leader> <Plug>(easymotion-prefix)
 
 "find and replace shortcut
 map <nowait> <leader>r :%s/
+
+"save sessions on exit
+autocmd! VimLeave * mksession
+autocmd! VimEnter * source ./Session.vim
 
