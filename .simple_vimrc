@@ -13,10 +13,8 @@ syntax on
 filetype plugin indent on
 
 " TODO: Pick a leader key
-" let mapleader = ","
-
-" Security
-set modelines=0
+let mapleader = "\<Space>"
+noremap <leader>s :w<cr>
 
 " Show line numbers
 set number
@@ -32,17 +30,48 @@ set encoding=utf-8
 
 " Whitespace
 set wrap
-set textwidth=79
-set formatoptions=tcqrn1
-set tabstop=2
+set tabstop=8                   " an indentation every 4 columns
+"set textwidth=79
+"set formatoptions=tcqrn1
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set noshiftround
+"set noshiftround
+set history=5000                " Store a ton of history (default is 20)
+
+
+"Use system wide clipboard
+set clipboard^=unnamed,unnamedplus " Use same clipboard as macOS/Linux
+
+"Yank from the cursor to the end of the line, to be consistent with C and D.
+nnoremap Y y$
+ 
+
+" gist-vim {
+     let g:gist_clip_command = 'pbcopy'
+" }
+  
+
+"Paste faster doesn't seem to work though
+set noswapfile
+
+"paste without yanking (necessary to press p without grabbing text you dont want!)
+vnoremap p "_dP
+  
+" paste fast leader key remap
+nmap <leader>p "+p
+    
+"clearing highlighted search
+nmap <silent> <leader>/ :nohlsearch<CR>
+    
+"delete with copying to vim clipboard
+nmap x "_d
+    
+
 
 " Cursor motion
 set scrolloff=3
-set backspace=indent,eol,start
+"set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 runtime! macros/matchit.vim
 
@@ -64,21 +93,12 @@ set showmode
 set showcmd
 
 " Searching
-nnoremap / /\v
-vnoremap / /\v
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set showmatch
-map <leader><space> :let @/=''<cr> " clear search
-
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
+     set incsearch                   " find as you type search
+set hlsearch                    " highlight search terms
+"set ignorecase
+"set smartcase
+"set showmatch
+"map <leader><space> :let @/=''<cr> " clear search
 
 " Formatting
 map <leader>q gqip
@@ -98,3 +118,63 @@ let g:solarized_termtrans=1
 " put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
 " in ~/.vim/colors/ and uncomment:
 " colorscheme solarized
+
+"remap d and c to not cut highlighted text
+nnoremap d "_d
+vnoremap d "_d
+
+"nnoremap c "_c
+vnoremap c "_c
+
+" Use '' to copy to clipboard much more reliably than "+y
+vmap '' :w !pbcopy<CR><CR>
+
+
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Setting up the directories {
+  set backup                      " backups are nice ...
+  if has('persistent_undo')
+    set undofile                "so ispersistent undo ...
+    set undolevels=1000  "maximum number of changes thatcan be undone
+    set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+  endif
+  au BufWinLeave *.* silent! mkview  "make vim save view (state) (folds, cursor, etc)
+  au BufWinEnter *.* silent! loadview "make vim load view (state) (folds, cursor, etc)
+"}
+    
+    
+
+function! InitializeDirectories()
+    let separator = "."
+    let parent = $HOME
+    let prefix = '.vim'
+    let dir_list = {
+    \ 'backup': 'backupdir',
+    \ 'views': 'viewdir',
+    \ 'swap': 'directory' }
+
+    if has('persistent_undo')
+        let dir_list['undo'] = 'undodir'
+    endif
+
+    for [dirname, settingname] in items(dir_list)
+        let directory = parent . '/' . prefix . dirname . "/"
+        if exists("*mkdir")
+          if !isdirectory(directory)
+              call mkdir(directory)
+          endif
+        endif
+        if !isdirectory(directory)
+          echo "Warning: Unable to create backup directory: " . directory
+          echo "Try: mkdir -p " . directory
+        else
+          let directory = substitute(directory, " ", "\\\\ ", "g")
+          exec "set " . settingname . "=" . directory
+        endif
+    endfor
+endfunction
+call InitializeDirectories()
+  
