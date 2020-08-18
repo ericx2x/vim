@@ -1,7 +1,155 @@
-curl http://raw.github.com/yunong/dotvim/master/install.sh -L -k -o - | bash
+Installation Fresh:
+install brew mac and get some ruby curl script
+brew install vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+paste .vimrc and then run PluginInstall
+https://github.com/vim/vim/issues/2329
 
-Launch vim and type `:PluginInstall`
-
-For fast finding in a project directory:
 brew install fzf
 brew install the_silver_searcher
+run the command below in vim to remove the ag search cant hit enter problem
+:set ma 
+
+https://github.com/pugengineer/iTerm2-ohmyzsh-powerlevel9kii
+
+"disable mac notifications on settings panel
+defaults write com.apple.systempreferences AttentionPrefBundleIDs 0
+killall Dock
+
+f - find next types character on line of cursor
+x - delete character
+w or W - move forward on word
+b or B - move backward on word
+A - go to end of line and get into insert mode
+Ctrl-] - go to other location (declaration) of function
+g - global. Can prepend with Ctrl-] to get many location of other occurence of string or function whatever (they call this tags)
+$ - move cursor to end of current line
+^ - move cursor to start of current line
+60% - move cursor 60% down the file
+` - take to next occurence of word you're currently on
+% - jump to beginning or end of brackets { } (it toggles)
+"*p  - paste instantly without it being slow
+
+Ctrl+v - Multi Line edit remember to press esc to see change on multi lines
+v - enter visual mode at cursor
+V - enter visual mode on whole line
+<< - tab indent lines from visual mode after selecting lines
+y - yank visual text
+yy - yank line
+yyp - duplicate line
+"+y - copy to system clipboard
+'' - quote quote copy entire line.
+:reg - view multiple vim clipboards
+"xyy - yank into register x
+"xp - paste from register x
+<leader>cc - comment out code but must be used with nerdcommenter plugin
+:NERDTree %    - open current file/directory in nerdtree
+
+:set nolist - gets rid of $ as endline char. Doesn't seem to set in vimrc but saves state after quit
+:20vs . - visual split on current working directory (dont forget period)
+Ctrl-W - switch between windows
+
+zt, zb, zz - similar to below but moves cursor
+H - move cursor to high(top) of screen
+M - move cursor to center of screen
+L - move cursor to bottom (low) of screen
+Ctrl-U, Ctrl-D - scroll up and down Ctrl-E, Ctrl-Y single line scrolling
+Ctrl-O go to previous line (in any file)
+
+:16 - jump to line 16
+11j - jump down 11 lines from current cursor location
+gg- top of the file
+G - jump to bottom of file
+
+//mkdir for .vim/sessions
+:mks ~/.vim/sessions/rooster.vim
+:source ~/.vim/sessions/rooster.vim
+vim -S ~/.vim/sessions/rooster.vim
+
+gf - go to file on places like import 'whatever/mytxt.md'
+:tabnew - creates a new tab gT gG to switch between tabs
+va)  - visual at ( ) grabs everything inside ( ) also then follow it up with S for surround and surround the text with something
+cst - change surround tag 
+dap - delete a paragraph
+gUaW - go uppercase a word, uppercases current cursor's word
+3ce - deletes everything from cursor to the right of current word
+ci*singlequote* - change inside single quotes *singlequote*changeme*singlequote*
+ca*singlequote* - change inside single quotes *singlequote*changeme*singlequote*
+ca*singlequote* - change outside single quotes *singlequote*changeme*singlequote*
+ciw - change inside w
+vat- visual select outer tag
+o or O - select beginning or end of visual selection
+
+buffers (vim doesnt use tabs but files proxies aka buffers)
+:e - edit a new file and open in a buffer
+:find - finds file in current project direcotry
+:bn - go to next buffer
+:bp - go to previous buffer
+:ls - list all buffers
+:set un/hidden - stop have buffers yelling that you made no edits
+:b {filename} - go to buffer based on filename
+:b{numberid} - go to buffer based on buffer id from ls
+:bd {numberid} - removes a buffer but asks if to save it before, closes current buffer by default
+:bw - really delete buffer
+:buffers - print all buffers
+:bufdo {cmd} - executre command for all buffers
+:n - go to next file based on arg list
+:arga {files} - add file to argslist
+:arg1 {files} - save a local copy via {files}
+:args - print all arguments
+
+:h {args} - help. so :h navigation
+
+vimtutor
+
+vscode - install vim extension - enable easymotion - type \\w or \\b
+
+:set path+=** Find files: https://stackoverflow.com/questions/3554719/find-a-file-via-recursive-directory-search-in-vim                             
+:set wildignore+=**/node_modules/** 
+
+:vimgrep /loremipsum/ **     - Look for loremipsum string in the project directory
+:cope - tool for selecting all the occurences with the above command
+:cw - shorthand for above
+:cnext  - next for above
+:cprev - previous for above
+:bufdo vimgrepadd yourstringhere % | copen   - find string in open buffers
+:Ag yourstringhere - make sure to install silver_searcher and FZF
+https://stackoverflow.com/questions/38398787/how-do-i-search-in-all-files-of-my-project-using-vim
+
+rm ~/.vimundo/*
+^- line above clears peresisten undo
+
+what's possible in vim:
+https://www.youtube.com/watch?v=E-ZbrtoSuzw
+
+Click and hold the full-screen button in the upper-left corner of a window. As you hold the button, the window shrinks and you can drag it to the left or right side of the screen. Release the button, then click a window on the other side of the screen to begin using both windows side by side.
+
+Versioning Problem:
+https://vi.stackexchange.com/questions/11058/how-do-i-run-homebrew-vi-on-macos-instead-of-the-older-version-apple-provided
+
+tmux:
+C-a "          split vertically (top/bottom)
+C-a %          split horizontally (left/right)
+Download:
+https://gist.github.com/michaellihs/b6d46fa460fa5e429ea7ee5ff8794b96#commands
+
+plugins:
+https://gist.githubusercontent.com/simonista/8703722/raw/d08f2b4dc10452b97d3ca15386e9eed457a53c61/.vimrc
+https://github.com/ThePrimeagen/dotvim
+
+a window manager like i3/magnet but free for mac:
+https://freemacsoft.net/tiles/
+
+iterm2:
+https://medium.com/@jonnyhaynes/jump-forwards-backwards-and-delete-a-word-in-iterm2-on-mac-os-43821511f0a
+
+primegan youtube series: https://youtu.be/n9k9scbTuvQ
+
+Control Mouse With Keyboard:
+Custom: https://github.com/ericx2x/karabiner_custom_keyboard_mouse_script
+.config/karabiner/assets/complex_modifications/
+https://www.reddit.com/r/vim/comments/hrn0a2/throw_out_your_mouse_completely/?
+https://ke-complex-modifications.pqrs.org/#mouse_keys_simple
+https://ke-complex-modifications.pqrs.org/#mouse_keys_mode_v4
+https://github.com/h2ero/XEasyMotion
+https://www.reddit.com/r/vim/comments/hshhkt/prevent_vim_from_slow_pasting/?
