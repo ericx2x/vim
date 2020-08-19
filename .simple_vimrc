@@ -177,4 +177,6 @@ function! InitializeDirectories()
     endfor
 endfunction
 call InitializeDirectories()
-  
+
+"always open current file direcory when using :e 
+autocmd BufEnter * silent! lcd %:p:h
