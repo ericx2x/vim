@@ -18,11 +18,13 @@ set nocompatible               " be iMproved
         Plugin 'git@github.com:rking/ag.vim.git'
         Plugin 'git@github.com:moll/vim-node.git'
         Plugin 'morhetz/gruvbox'
+        Plugin 'neoclide/coc.nvim', {'branch': 'release'}
         Plugin 'rust-lang/rust.vim'
+        Plugin 'posva/vim-vue'
         Plugin 'racer-rust/vim-racer'
         Plugin 'rcticicestudio/nord-vim'
         Plugin 'git@github.com:ajh17/VimCompletesMe.git'
-        Plugin 'git@github.com:Valloric/YouCompleteMe.git'
+        "Plugin 'git@github.com:Valloric/YouCompleteMe.git'
         Plugin 'lyuts/vim-rtags'
         Plugin 'leafgarland/typescript-vim'
         Plugin 'tpope/vim-fugitive'
@@ -50,6 +52,7 @@ set nocompatible               " be iMproved
         Plugin 'corntrace/bufexplorer'
         Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
         Plugin 'kien/ctrlp.vim'
+        Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plugin 'junegunn/fzf.vim'
         Plugin 'ggreer/the_silver_searcher'
         Plugin 'lambdalisue/nodeunit.vim.git'
@@ -88,6 +91,7 @@ set nocompatible               " be iMproved
         Plugin 'tfnico/vim-gradle'
         Plugin 'shime/vim-livedown'
         Plugin 'heavenshell/vim-jsdoc'
+        "Plugin 'xolox/vim-session'"didn't work?
         Plugin 'Yggdroot/indentLine'
         "Plugin 'myusuf3/numbers.vim'
         Plugin 'bfrg/vim-cpp-modern'
@@ -142,7 +146,7 @@ set nocompatible               " be iMproved
 
 
     "cursor crosshairs
-    :set cursorcolumn
+    ":set cursorcolumn
 
 
     if has('cmdline_info')
@@ -179,7 +183,7 @@ set nocompatible               " be iMproved
     set scrolljump=5                " lines to scroll when cursor leaves screen
     set scrolloff=3                 " minimum lines to keep above and below cursor
     set foldenable                  " auto fold code
-    set nolist
+    set nolist                      " write ':set nolist' to remove annoying dollar signs
     "set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace   
 
 " }
@@ -224,9 +228,12 @@ vmap '' :w !pbcopy<CR><CR>
     "nnoremap <SPACE> <Nop>
     let mapleader = "\<Space>"
     noremap <leader>s :w<cr>
-
+ 
     " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
-    nnoremap ; :
+    "nnoremap ; :
+    " Change my :wq habbits so I dont quickly quit out without thinking about session
+    "nnoremap : {
+    "nnoremap { :
 
     " Easier moving in tabs and windows
     map <C-J> <C-W>j<C-W>_
@@ -255,9 +262,8 @@ vmap '' :w !pbcopy<CR><CR>
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
     
-	  "paste without yanking (no longer needed because fast pasting?)
-    "vnoremap p "_dP
-    vnoremap p "+p
+    "paste without yanking (necessary to press p without grabbing text you dont want!)
+    vnoremap p "_dP
 
     " paste fast leader key remap
     nmap <leader>p "+p
@@ -265,7 +271,7 @@ vmap '' :w !pbcopy<CR><CR>
     "clearing highlighted search
     nmap <silent> <leader>/ :nohlsearch<CR>
 
-    "delete without copying to vim clipboard
+    "delete with copying to vim clipboard
     nmap x "_d
 
     "ented to make newlines from normal mode
@@ -284,7 +290,8 @@ vmap '' :w !pbcopy<CR><CR>
 
     " Some helpers to edit mode
     " http://vimcasts.org/e/14
-    cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+    "noremap %% <C-R>=expand('%:h').'/'<cr>
     map <leader>;w :e %%
     map <leader>;s :sp %%
     map <leader>;v :vsp %%
@@ -333,8 +340,9 @@ vmap '' :w !pbcopy<CR><CR>
 
   " NerdTree {
       let NERDTreeMapToggleHidden=1
-      map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-      map <leader>e :NERDTreeFind<CR>
+      noremap <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+      noremap <leader>e :NERDTreeFind<CR>
+      "to refresh just hit 'r' while nerdtree is active
       nmap <leader>nt :NERDTreeFind<CR>
 
       let NERDTreeShowBookmarks=1
@@ -392,7 +400,7 @@ vmap '' :w !pbcopy<CR><CR>
   " }
 
   " TagBar {
-    nnoremap <silent> <leader>tt :TagbarToggle<CR>
+    "nnoremap <silent> <leader>tt :TagbarToggle<CR>
   "}
 
   " Vim Indent Guides {
@@ -589,6 +597,7 @@ set noswapfile
 "remap d and c to not cut highlighted text
 nnoremap d "_d
 vnoremap d "_d
+
 nnoremap c "_c
 vnoremap c "_c
 
@@ -627,9 +636,25 @@ nmap <nowait> <Leader>n <Plug>(easymotion-overwin-w)
 map <Leader> <Plug>(easymotion-prefix)
 
 "find and replace shortcut
-map <nowait> <leader>r :%s/
+noremap <nowait> <leader>r :%s/
 
-"save sessions on exit
-autocmd! VimLeave * mksession
-autocmd! VimEnter * source ./Session.vim
+"save sessions on with hotkeys
+noremap <leader>q :mksession! ~/vim_session <bar> :q <cr> " Quick write session
+"noremap <leader>q :noautocmd <cr> " quit without writing a session ":noautocmd
+noremap <leader>s :mksession! ~/vim_session <bar> :w <cr> " Quick write session
+noremap <leader>t :source ~/vim_session <cr>     " And load session with F3
+":command Wq mksession! ~/vim_session <bar> :wq <cr>
+":command WQ mksession! ~/vim_session <bar> :wq <cr>
+":autocmd BufWinLeave * :mksession! ~/vim_session 
 
+"replace :bd with leader x
+noremap <leader>x :bd<cr>
+noremap <leader>o <C-o><cr>"restore closed tab
+
+"coc (autocomplete definition)
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gr <Plug>(coc-references)
+nnoremap <C-p> :GFiles<CR>
+
+"for vue files
+autocmd BufRead,BufNewFile *.vue setfiletype html
