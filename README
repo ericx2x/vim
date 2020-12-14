@@ -10,7 +10,7 @@ brew install the_silver_searcher
 run the command below in vim to remove the ag search cant hit enter problem
 :set ma 
 
-https://github.com/pugengineer/iTerm2-ohmyzsh-powerlevel9kii
+https://github.com/pugengineer/iTerm2-ohmyzsh-powerlevel9k
 
 "disable mac notifications on settings panel
 defaults write com.apple.systempreferences AttentionPrefBundleIDs 0
