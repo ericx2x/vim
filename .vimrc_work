@@ -15,7 +15,6 @@ Plug 'racer-rust/vim-racer'
 Plug 'git@github.com:ajh17/VimCompletesMe.git'
 "Plug 'lyuts/vim-rtags'
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-fugitive'
 
 
 Plug 'easymotion/vim-easymotion'
@@ -41,7 +40,9 @@ Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'ggreer/the_silver_searcher'
-Plug 'git@github.com:albfan/ag.vim.git' "makes searching at the root enable for whatever reason
+Plug 'BurntSushi/ripgrep'
+"Plug 'rking/ag.vim'
+"Plug 'git@github.com:albfan/ag.vim.git' "makes searching at the root enable for whatever reason
 Plug 'airblade/vim-rooter'
 "Plug 'marijnh/tern_for_vim'
 Plug 'mattn/gist-vim'
@@ -63,7 +64,6 @@ Plug 'rizzatti/dash.vim'
 Plug 'rizzatti/funcoo.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
-"Plug 'tpope/vim-fugitive'
 Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-surround'
 "Themes
@@ -154,7 +154,6 @@ if has('statusline')
   " Broken down into easily includeable segments
   set statusline=%<%f\    " Filename
   set statusline+=%w%h%m%r " Options
-  set statusline+=%{fugitive#statusline()} "  Git Hotness
   set statusline+=\ [%{&ff}/%Y]            " filetype
   set statusline+=\ [%{getcwd()}]          " current dir
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -557,7 +556,8 @@ set wildmode=list:longest,full
 set wildignore+=**/vendor/**
 set wildignore+=**/node_modules/**
 set conceallevel=0
-set ma
+"set ma
+:autocmd BufWinEnter * setlocal modifiable
 
 
 "Hotkey to toggle scroll cursor center on/off
