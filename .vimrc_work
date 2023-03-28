@@ -6,9 +6,11 @@ filetype off                   " required!
 call plug#begin()
 
 "Plug 'git@github.com:moll/vim-node.git'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'morhetz/gruvbox'
 Plug 'rust-lang/rust.vim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'posva/vim-vue'
 Plug 'racer-rust/vim-racer'
 "Plug 'rcticicestudio/nord-vim'
@@ -39,7 +41,7 @@ Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'ggreer/the_silver_searcher'
+Plug 'ggreer/the_silver_searcher'
 Plug 'BurntSushi/ripgrep'
 "Plug 'rking/ag.vim'
 "Plug 'git@github.com:albfan/ag.vim.git' "makes searching at the root enable for whatever reason
@@ -71,7 +73,7 @@ Plug 'vim-scripts/Colour-Sampler-Pack'
 "Plug 'sjl/badwolf'
 Plug 'dracula/vim',{ 'name': 'dracula' }
 Plug 'chriskempson/base16-vim'
-Plug 'ParamagicDev/vim-medic_chalk'
+"Plug 'ParamagicDev/vim-medic_chalk'
 "base16-default-dark
 Plug 'vim-scripts/Liquid-Carbon'
 Plug 'mhartington/oceanic-next'
@@ -126,7 +128,7 @@ au BufWinEnter *.* silent! loadview "make vim load view (state) (folds, cursor, 
 " Vim UI {
 "set t_Co-256 "this may or maynot be needed for certain color sschemes.
 set background=dark         " Assume a dark background
-colorscheme medic_chalk       " load a colorscheme
+colorscheme catppuccin       " load a colorscheme
 "set termguicolors
 set tabpagemax=15               " only show 15 tabs
 set showmode                    " display the current mode
