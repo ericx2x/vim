@@ -6,7 +6,10 @@ filetype off                   " required!
 call plug#begin()
 
 "Plug 'git@github.com:moll/vim-node.git'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'f-person/git-blame.nvim'
+Plug 'neoclide/coc-eslint'
+Plug 'neoclide/coc-tsserver'
 Plug 'morhetz/gruvbox'
 Plug 'rust-lang/rust.vim'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
@@ -14,7 +17,7 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'posva/vim-vue'
 Plug 'racer-rust/vim-racer'
 "Plug 'rcticicestudio/nord-vim'
-Plug 'git@github.com:ajh17/VimCompletesMe.git'
+"Plug 'git@github.com:ajh17/VimCompletesMe.git'
 "Plug 'lyuts/vim-rtags'
 Plug 'leafgarland/typescript-vim'
 
@@ -37,7 +40,7 @@ Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'corntrace/bufexplorer'
-Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+"Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -609,7 +612,7 @@ map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " F{char}{char} to move to {char}{char}
-nmap F <Plug>(easymotion-overwin-f2)
+" nmap F <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
@@ -665,3 +668,21 @@ let g:indentLine_concealcursor = ""
 au FileType markdown setl conceallevel=0
 
 nmap <Leader>0 <Plug>(Prettier)
+
+"Git blame
+let g:gitblame_enabled = 1
+let g:gitblame_message_template = '<summary> • <date> • <author>'
+
+" use <tab> to trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
